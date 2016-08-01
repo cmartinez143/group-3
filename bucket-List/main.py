@@ -1,3 +1,4 @@
+# whats up
 import webapp2
 import jinja2
 
@@ -5,7 +6,7 @@ env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class results(ndb.Model):
 	event = ndb.StringProperty(indexed=False)
-	location = ndb.StringProperty(indexed=Fals)
+	location = ndb.StringProperty(indexed=False)
 
 
 class BucketListHandler(webapp2.RequestHandler):
