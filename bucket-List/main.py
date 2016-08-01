@@ -25,11 +25,12 @@ class BucketListHandler(webapp2.RequestHandler):
     		'bucketListItem':self.response.get('bucketListItem'),
     	}
         bucketlistproto_template= env.get_template('bucket_list_form.html')
-        self.response.out.write(bucketlistproto_template.render())
+        self.response.out.write(bucketlistproto_template.render(variables))
 
-#class results
+
+#class ResultsHandler(webapp2.ResultsHandler):
 
 app = webapp2.WSGIApplication([
     ('/', BucketListHandler),
-#    ('/'results, ResultsLishandler)
+    #('/results', ResultsLishandler)
 ], debug=True)
