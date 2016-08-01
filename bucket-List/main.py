@@ -17,18 +17,20 @@ class results(ndb.Model):
 
 class BucketListHandler(webapp2.RequestHandler):
     def get(self):
-    	bucketlistproto_template= env.get_template('bucket_list_form.html')
-    	self.response.out.write(bucketlistproto_template.render())
+        bucketlistproto_template = env.get_template('bucket_list_form.html')
+        self.response.out.write(bucketlistproto_template.render())
     def post(self):
-    	form_results_template= env.get_template('form_results.html')
-    	variables = {
-    		'bucketListItem':self.response.get('bucketListItem'),
-    	}
+        form_results_template = env.get_template('form_results.html')
+        variables = {
+            'bucketListItem': self.response.get('bucketListItem'),
+        }
         bucketlistproto_template= env.get_template('bucket_list_form.html')
         self.response.out.write(bucketlistproto_template.render(variables))
 
 
+
 #class ResultsHandler(webapp2.ResultsHandler):
+
 
 app = webapp2.WSGIApplication([
     ('/', BucketListHandler),
