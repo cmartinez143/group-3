@@ -1,32 +1,25 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 import webapp2
 import jinja2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
+class results(ndb.Model):
+	event = ndb.StringProperty(indexed=False)
+	location = ndb.StringProperty(indexed=Fals)
 
+
+class BucketListHandler(webapp2.RequestHandler):
+    def get(self):
     	bucketlistproto_template= env.get_template('bucket-list-form.html')
-    	
+    	'bucketListItem': self.request.get("bucketListItem")
     	self.response.out.write(bucketlistproto_template.render())
-        
+    def post(self):
+    	form-results_template= env.get_template('form-results.html')
+    	variables = {
+    		'bucketListItem':self.response.get('bucketListItem'),
+    	}
+    self.repsonse.out.write(form-results_template.render(variables))
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/bucket', BucketListHandler)
 ], debug=True)
