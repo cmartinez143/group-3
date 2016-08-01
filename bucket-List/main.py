@@ -13,11 +13,11 @@ class results(ndb.Model):
 
 class BucketListHandler(webapp2.RequestHandler):
     def get(self):
-    	bucketlistproto_template= env.get_template('bucket-list-form.html')
+    	bucketlistproto_template= env.get_template('bucket_list_form.html')
     	'bucketListItem': self.request.get("bucketListItem")
     	self.response.out.write(bucketlistproto_template.render())
     def post(self):
-    	form-results_template= env.get_template('form-results.html')
+    	form-results_template= env.get_template('form_results.html')
     	variables = {
     		'bucketListItem':self.response.get('bucketListItem'),
     	}
