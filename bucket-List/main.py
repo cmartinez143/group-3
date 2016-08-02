@@ -6,7 +6,7 @@ import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 #from form_results import Form_results
-class Username ( ndb.Model ):
+class UserData ( ndb.Model ):
     name= ndb.StringProperty(required=True)
     date_of_birth = ndb.DateProperty(required=False)
 class MainHandler(webapp2.RequestHandler):
@@ -26,9 +26,9 @@ class MainHandler(webapp2.RequestHandler):
            
             }
         
-        u = Username(name =template_variables['noun1'])
+        u = UserData(name =template_variables['noun1'])
         
-        exclusive = Username.query().filter(Username.name==template_variables['noun1'])
+        exclusive = UserData.query().filter(UserData.name==template_variables['noun1'])
         only_one=exclusive.fetch()
         if len(only_one)>=1:
             self.response.out.write(error_template.render())
