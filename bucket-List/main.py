@@ -36,7 +36,7 @@ class MainHandler(webapp2.RequestHandler):
             self.response.out.write(results_template.render(template_variables))
             u.put()
 
-class BucketListEvents (ndb.Model):
+class Events (ndb.Model):
     event = ndb.StringProperty(required=True)
     location = ndb.StringProperty(indexed=False)
 
@@ -44,12 +44,6 @@ class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
         self.response.write(bucketlistproto_template.render())
-    # def post(self):
-    #     form_results_template = env.get_template('form_results.html')
-    #     variables = {
-    #         'bucket_list_item': self.request.get('bucketListItem'),
-    #     }
-    #     self.response.out.write(form_results_template.render(variables))
 
 class BucketListHandler(webapp2.RequestHandler):
     def post(self):
@@ -58,8 +52,12 @@ class BucketListHandler(webapp2.RequestHandler):
             'bucket_list_item': self.request.get('bucketListItem'),
             'bucket_list_location': self.request.get('bucketListLocation')
             }
+
+        e = Events(event = variables['bucket_list_item']) 
+
         bucketlistproto_template= env.get_template('form_results.html')
         self.response.out.write(form_results_template.render(variables))
+        e.put()
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
