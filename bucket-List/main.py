@@ -1,47 +1,60 @@
-#This is a comment
+# Hello
 
-<<<<<<< HEAD
-=======
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-<<<<<<< HEAD
-
-import logging
-from google.appengine.ext import ndb
-import webapp2
-=======
->>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
->>>>>>> origin/master
 import jinja2
-import webapp2
+import urllib
+import urllib2
 
-<<<<<<< HEAD
-=======
-#from form_results import Form_results
+from google.appengine.ext import ndb
+
+import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
->>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
+#from form_results import Form_results
 
-env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
+class results(ndb.Model):
+    event = ndb.StringProperty(indexed=False)
+    location = ndb.StringProperty(indexed=False)
+env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
-<<<<<<< HEAD
+
+class BucketListHandler(webapp2.RequestHandler):
+    def get(self):
+        bucketlistproto_template = env.get_template('bucket_list_form.html')
+        self.response.write(bucketlistproto_template.render())
+    # def post(self):
+    #     form_results_template = env.get_template('form_results.html')
+    #     variables = {
+    #         'bucket_list_item': self.request.get('bucketListItem'),
+    #     }
+    #     self.response.out.write(form_results_template.render(variables))
+
+class ResultsHandler(webapp2.RequestHandler):
+    def post(self):
+        form_results_template = env.get_template('form_results.html')
+        variables = {
+            'bucket_list_item': self.request.get('bucketListItem'),
+        }
+        bucketlistproto_template= env.get_template('form_results.html')
+        self.response.write(form_results_template.render(variables))
+
+# class ResultsHandler(webapp2.RequestHandler):
+#     def get(self):
+#         bucketlistprototemplate = env.get_template("form_results.html")
+        
+#         variables = {}
+#         variables['bucket_list_item']= advice_result.bucket_list_item
+        
+#         self.response.write(bucketlistproto_template.render(variables))
+        #self.response.write(template.render())
+
+        self.response.out.write(form_results_template.render(variables))
 
 
+app = webapp2.WSGIApplication([
+    ('/', BucketListHandler),
+    #('/results', ResultsHandler)
+    ('/results', ResultsHandler)
+], debug=True)
 
 
 
