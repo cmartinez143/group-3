@@ -17,12 +17,22 @@
 # limitations under the License.
 #
 
+<<<<<<< HEAD
 
 import logging
 from google.appengine.ext import ndb
 import webapp2
+=======
+>>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
 import jinja2
+import webapp2
 
+<<<<<<< HEAD
+=======
+#from form_results import Form_results
+
+env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
+>>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
@@ -32,6 +42,7 @@ class Username ( ndb.Model ):
 class MainHandler(webapp2.RequestHandler):
     
     def get(self):
+<<<<<<< HEAD
         main_template = env.get_template('bucketlistproto.html')
         self.response.out.write(main_template.render())
     def post(self): ## here's the new POST method in the MainHandler
@@ -58,4 +69,27 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
+=======
+        bucketlistproto_template = env.get_template('bucket_list_form.html')
+        self.response.write(bucketlistproto_template.render())
+    # def post(self):
+    #     form_results_template = env.get_template('form_results.html')
+    #     variables = {
+    #         'bucket_list_item': self.request.get('bucketListItem'),
+    #     }
+    #     self.response.out.write(form_results_template.render(variables))
+
+class ResultsHandler(webapp2.RequestHandler):
+    def post(self):
+        form_results_template = env.get_template('form_results.html')
+        variables = {
+            'bucket_list_item': self.request.get('bucketListItem'),
+        }
+        self.response.out.write(form_results_template.render(variables))
+
+
+app = webapp2.WSGIApplication([
+    ('/', BucketListHandler),
+    ('/results', ResultsHandler)
+>>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
 ], debug=True)
