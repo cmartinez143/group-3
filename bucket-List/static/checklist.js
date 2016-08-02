@@ -1,1 +1,0 @@
-$(location).attr('href', localhost:8080/results);. window.location.href
