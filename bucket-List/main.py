@@ -6,13 +6,13 @@ import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 #from form_results import Form_results
-class Username ( ndb.Model ):
+class UserData ( ndb.Model ):
     name= ndb.StringProperty(required=True)
     date_of_birth = ndb.DateProperty(required=False)
 class MainHandler(webapp2.RequestHandler):
     
     def get(self):
-        main_template = env.get_template('bucketlistproto.html')
+        main_template = env.get_template('registration.html')
         self.response.out.write(main_template.render())
     def post(self): ## here's the new POST method in the MainHandler
         results_template = env.get_template('newr.html')
@@ -26,9 +26,9 @@ class MainHandler(webapp2.RequestHandler):
            
             }
         
-        u = Username(name =template_variables['noun1'])
+        u = UserData(name =template_variables['noun1'])
         
-        exclusive = Username.query().filter(Username.name==template_variables['noun1'])
+        exclusive = UserData.query().filter(UserData.name==template_variables['noun1'])
         only_one=exclusive.fetch()
         if len(only_one)>=1:
             self.response.out.write(error_template.render())
@@ -36,47 +36,33 @@ class MainHandler(webapp2.RequestHandler):
             self.response.out.write(results_template.render(template_variables))
             u.put()
 
-class results(ndb.Model):
-    event = ndb.StringProperty(indexed=False)
+class Events (ndb.Model):
+    event = ndb.StringProperty(required=True)
     location = ndb.StringProperty(indexed=False)
 
-class BucketListHandler(webapp2.RequestHandler):
+class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
         self.response.write(bucketlistproto_template.render())
-    # def post(self):
-    #     form_results_template = env.get_template('form_results.html')
-    #     variables = {
-    #         'bucket_list_item': self.request.get('bucketListItem'),
-    #     }
-    #     self.response.out.write(form_results_template.render(variables))
 
-class ResultsHandler(webapp2.RequestHandler):
+class BucketListHandler(webapp2.RequestHandler):
     def post(self):
         form_results_template = env.get_template('form_results.html')
         variables = {
             'bucket_list_item': self.request.get('bucketListItem'),
-        }
+            'bucket_list_location': self.request.get('bucketListLocation')
+            }
+
+        e = Events(event = variables['bucket_list_item']) 
+
         bucketlistproto_template= env.get_template('form_results.html')
-        self.response.write(form_results_template.render(variables))
-
-# class ResultsHandler(webapp2.RequestHandler):
-#     def get(self):
-#         bucketlistprototemplate = env.get_template("form_results.html")
-        
-#         variables = {}
-#         variables['bucket_list_item']= advice_result.bucket_list_item
-        
-#         self.response.write(bucketlistproto_template.render(variables))
-        #self.response.write(template.render())
-
-     #   self.response.out.write(form_results_template.render(variables))
-
+        self.response.out.write(form_results_template.render(variables))
+        e.put()
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/', BucketListHandler)
-    ('/results', ResultsHandler)
+    ('/bucketlistform', BucketListFormHandler),
+    ('/bucketlist', BucketListHandler)
 ], debug=True)
 
 
