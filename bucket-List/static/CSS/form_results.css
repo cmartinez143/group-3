@@ -1,8 +1,21 @@
+
+#webBanner{
+	font-family: "Brush Script MT", cursive;
+	font-size: 36px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	color: white;
+	line-height: 46.8px;
+	text-align: center;
+	background-image: url('http://bit.ly/2aL3BQh');
+}
+
 #user_title {
 	text-align: center;
 
 }
 
-div{
+#bucketList{
 	text-align: center;
 }
