@@ -19,12 +19,40 @@
 
 
 import logging 
+<<<<<<< HEAD
+import urlllib
+=======
 
+>>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
 import webapp2
 import jinja2
 from google.appengine.ext import ndb
 
 
+<<<<<<< HEAD
+logging.info("HI")       
+env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
+class Username ( ndb.Model ):
+	name= ndb.StringProperty(required=True)
+	date_of_birth = ndb.DateProperty(required=False)
+
+
+class MainHandler(webapp2.RequestHandler):
+    
+    def get(self):
+    	logging.info("Hi")
+        main_template = env.get_template('bucketlistproto.html')
+        
+    def post(self): ## here's the new POST method in the MainHandler
+        logging.debug("Hello")
+        results_template = env.get_template('newr.html')
+ 
+        # the variables that are sent to results.html are user_answer_1 and user_answer_2
+        # they contain the input values from the main.html form with names answer1 and answer2
+        template_variables = {'noun1':self.request.get("noun1"),'password':self.request.get("password"),'email':self.request.get("email")}
+        
+       
+=======
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class Username(ndb.Model):
@@ -50,6 +78,7 @@ class MainHandler(webapp2.RequestHandler):
         u=Username(name="noun1")
 		u.put()
 		
+>>>>>>> a27b90e9c09544611923eedf7412f27e6064acfd
         self.response.out.write(results_template.render(template_variables))
 
 
