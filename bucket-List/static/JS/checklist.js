@@ -56,3 +56,26 @@ function handleSignoutClick(event) {
 
 // Load the API client and auth library
 gapi.load('client:auth2', initAuth);
+
+
+
+
+// $('#list').on('click', '.complete-button', function(event) {
+//   var item = $(event.target).parent()
+//   var isItemCompleted = item.hasClass('completed')
+//   var itemId = item.attr('data-id')
+
+//   var updateRequest = $.ajax({
+//     type: 'PUT',
+//     url: "/bucketlist" + itemId,
+//     data: { completed: !isItemCompleted }
+//   })
+
+//   updateRequest.done(function(itemData) {
+//     if (itemData.completed) {
+//       item.addClass('completed')
+//     } else {
+//       item.removeClass('completed')
+//     }
+//   })
+
