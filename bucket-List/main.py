@@ -12,7 +12,7 @@ class Username ( ndb.Model ):
 class MainHandler(webapp2.RequestHandler):
     
     def get(self):
-        main_template = env.get_template('bucketlistproto.html')
+        main_template = env.get_template('registration.html')
         self.response.out.write(main_template.render())
     def post(self): ## here's the new POST method in the MainHandler
         results_template = env.get_template('newr.html')
