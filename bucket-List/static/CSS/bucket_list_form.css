@@ -51,6 +51,14 @@ li:last-child {
     border-bottom: none;
 }
 
+#webBanner { 
+    text-align: center;
+ }
+
+#banner { 
+    border: solid;
+    border-color: #42274B;
+ }
 #textbox {
     text-align: center;
 }
