@@ -73,7 +73,7 @@ class MainHandler(webapp2.RequestHandler):
                 self.redirect("/bucketlistform")
             else:
                 # no user data; redirect to regitration
-                self.redirect("/register")
+                self.redirect("/home")
         else:
             self.redirect("/home")
 class HomeHandler(webapp2.RequestHandler):
@@ -87,6 +87,11 @@ class BucketListFormHandler(webapp2.RequestHandler):
         self.response.write(bucketlistproto_template.render())
         
 class BucketListHandler(webapp2.RequestHandler):
+    def get(self):
+        bucket_temp = env.get_template("form_results.html")
+        self.response.write(bucket_temp.render())
+
+
     def post(self):
         user = users.get_current_user()
         user_email = user.email()
