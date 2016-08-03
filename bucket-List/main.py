@@ -8,30 +8,30 @@ import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 #from form_results import Form_results
+
 def get_user_data(email):
     p =UserData.query().filter(UserData.email==email)
     user=p.get()
     if user:
-        return user
+        return True
     else:
-        return None
+        return False
 
-class LoginPage(webapp2.RequestHandler):
+class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            nickname = user.nickname()
+            # user is logged in
             logout_url = users.create_logout_url('/')
-            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
-                nickname, logout_url)
+            greeting = 'Welcome! (<a href="{}">sign out</a>)'.format(
+                logout_url)
         else:
             login_url = users.create_login_url('/')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
-class MainHandler(webapp2.RequestHandler):
-    
+class RegistrationHandler(webapp2.RequestHandler):
     def get(self):
         main_template = env.get_template('registration.html')
         self.response.out.write(main_template.render())
@@ -57,20 +57,22 @@ class MainHandler(webapp2.RequestHandler):
         else:
             self.response.out.write(results_template.render(template_variables))
             u.put()
-class LoginPage(webapp2.RequestHandler):
+
+class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            nickname = user.nickname()
-            logout_url = users.create_logout_url('/')
-            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
-                nickname, logout_url)
+            self.response.out.write("You are logged in")
+            user_data_exists = get_user_data(user.email())
+            if user_data_exists == True:
+                # found user data; redirect to bucketform
+                self.redirect("/bucketlistform")
+            else:
+                # no user data; redirect to regitration
+                self.redirect("/register")
         else:
-            login_url = users.create_login_url('/')
-            greeting = '<a href="{}">Sign in</a>'.format(login_url)
+            self.redirect("/login")
 
-        self.response.write(
-            '<html><body>{}</body></html>'.format(greeting))
 class Events (ndb.Model):
     event = ndb.StringProperty(required=True)
     location = ndb.StringProperty(indexed=False)
@@ -96,9 +98,15 @@ class BucketListHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/register', RegistrationHandler),
     ('/bucketlistform', BucketListFormHandler),
     ('/bucketlist', BucketListHandler),
-    ('/login', LoginPage)
+    ('/login', LoginHandler)
 ], debug=True)
 
 
+    
+
+
+            
+    
