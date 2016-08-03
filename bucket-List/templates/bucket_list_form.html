@@ -6,8 +6,14 @@
 	<link rel="stylesheet" type="text/css" href="/static/CSS/bucket_list_form.css">
 </head>
 <body background="http://bit.ly/1CWxJe6">
+	<ul id= sidebar>
+  		<li class= "bar" ><a href="default.asp">Home</a></li>
+  		<li class= "bar" ><a href="news.asp">News</a></li>
+  		<li class= "bar" ><a href="contact.asp">Contact</a></li>
+    	<li class= "bar" ><a href="about.asp">About</a></li>
+	</ul>
 	<!-- Creates a form for user to input an item on their bucket list. -->
-	<form method='post' action="/bucketlist"> 
+	<form id= textbox method='post' action="/bucketlist"> 
 		Enter item on your bucket list: <input type = "text" name = "bucketListItem" >
 		<br>
 		Enter preferred lcoation: <input type="text" name="bucketListLocation">
