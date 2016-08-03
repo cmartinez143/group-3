@@ -97,11 +97,31 @@ class BucketListHandler(webapp2.RequestHandler):
         bucketlistproto_template= env.get_template('form_results.html')
         self.response.out.write(form_results_template.render(variables))
 
+class FriendsListHandler(webapp2.RequestHandler):
+    def get(self):
+        friendslist_template = env.get_template('friendslist.html')
+        self.response.write(friendslist_template.render())
+
+class MessageListHandler(webapp2.RequestHandler):
+    def get(self):
+        messages_template = env.get_template('messages.html')
+        self.response.write(messages_template.render())
+
+class NewsfeedListHandler(webapp2.RequestHandler):
+    def get(self):
+        newsfeed_template = env.get_template('newsfeed.html')
+        self.response.write(newsfeed_template.render())
+        
+        
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/register', RegistrationHandler),
     ('/bucketlistform', BucketListFormHandler),
     ('/bucketlist', BucketListHandler),
+    ('/friends', FriendsListHandler),
+    ('/messages', MessageListHandler),
+    ('/newsfeed',NewsfeedListHandler),
     ('/login', LoginHandler)
 ], debug=True)
 
