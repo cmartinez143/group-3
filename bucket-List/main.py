@@ -89,10 +89,6 @@ class BucketListFormHandler(webapp2.RequestHandler):
 class BucketListHandler(webapp2.RequestHandler):
     def get(self):
         bucket_temp = env.get_template("form_results.html")
-        self.response.write(bucket_temp.render())
-
-
-    def post(self):
         user = users.get_current_user()
         user_email = user.email()
         logging.info (user_email)
@@ -102,7 +98,26 @@ class BucketListHandler(webapp2.RequestHandler):
         curr_u = user_l[0]
         u_key = curr_u.key
         logging.info(u_key)
+        event_list_q = Events.query().filter(Events.user == u_key )
+        event_list = event_list_q.fetch()
+        logging.info(event_list)
+        variables = {
+            'user': curr_u.name,
+            'events': event_list
+            }
+        self.response.write(bucket_temp.render(variables))
+
+    def post(self):
         form_results_template = env.get_template('form_results.html')
+        user = users.get_current_user()
+        user_email = user.email()
+        logging.info (user_email)
+        user_q = UserData.query().filter(UserData.email == user_email)
+        user_l = user_q.fetch()
+        logging.info(user_l)
+        curr_u = user_l[0]
+        u_key = curr_u.key
+        logging.info(u_key)
         e = Events(event = self.request.get('bucketListItem'), user =u_key) 
         e.put()
         event_list_q = Events.query().filter(Events.user == u_key )
