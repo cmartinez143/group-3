@@ -73,7 +73,7 @@ class MainHandler(webapp2.RequestHandler):
                 self.redirect("/bucketlistform")
             else:
                 # no user data; redirect to regitration
-                self.redirect("/register")
+                self.redirect("/home")
         else:
             self.redirect("/home")
 class HomeHandler(webapp2.RequestHandler):
