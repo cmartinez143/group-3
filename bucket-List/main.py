@@ -82,17 +82,20 @@ class BucketListFormHandler(webapp2.RequestHandler):
         
 class BucketListHandler(webapp2.RequestHandler):
     def post(self):
+        user = users.get_current_user()
+        u_key = user.key.get()
         form_results_template = env.get_template('form_results.html')
+        e = Events(event = self.request.get, user =u_key) 
+        e.put()
         variables = {
-            'bucket_list_item': self.request.get('bucketListItem'),
-            'bucket_list_location': self.request.get('bucketListLocation')
+            'user': u_key.name,
             }
+        event_list_q = Events.query().filter(Events.user == u_key )
+        event_list = event_list_q.fetch()
 
-        e = Events(event = variables['bucket_list_item']) 
 
         bucketlistproto_template= env.get_template('form_results.html')
         self.response.out.write(form_results_template.render(variables))
-        e.put()
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
