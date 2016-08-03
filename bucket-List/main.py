@@ -73,7 +73,10 @@ class MainHandler(webapp2.RequestHandler):
                 self.redirect("/register")
         else:
             self.redirect("/login")
-
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template=env.get_template("index.html")
+        self.response.write(home_template.render())
 
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
@@ -99,7 +102,8 @@ app = webapp2.WSGIApplication([
     ('/register', RegistrationHandler),
     ('/bucketlistform', BucketListFormHandler),
     ('/bucketlist', BucketListHandler),
-    ('/login', LoginHandler)
+    ('/login', LoginHandler),
+    ('/home',HomeHandler)
 ], debug=True)
 
 
