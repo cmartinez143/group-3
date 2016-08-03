@@ -6,6 +6,7 @@ from google.appengine.api import users
 from model import UserData
 from model import Events
 import webapp2
+import logging
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 #from form_results import Form_results
@@ -17,6 +18,7 @@ def get_user_data(email):
         return True
     else:
         return False
+current_u_key = 0
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
@@ -87,15 +89,24 @@ class BucketListFormHandler(webapp2.RequestHandler):
 class BucketListHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
-        u_key = user.key.get()
+        user_email = user.email()
+        logging.info (user_email)
+        user_q = UserData.query().filter(UserData.email == user_email)
+        user_l = user_q.fetch()
+        logging.info(user_l)
+        curr_u = user_l[0]
+        u_key = curr_u.key
+        logging.info(u_key)
         form_results_template = env.get_template('form_results.html')
-        e = Events(event = self.request.get, user =u_key) 
+        e = Events(event = self.request.get('bucketListItem'), user =u_key) 
         e.put()
-        variables = {
-            'user': u_key.name,
-            }
         event_list_q = Events.query().filter(Events.user == u_key )
         event_list = event_list_q.fetch()
+        logging.info(event_list)
+        variables = {
+            'user': curr_u.name,
+            'events': event_list
+            }
 
 
         bucketlistproto_template= env.get_template('form_results.html')

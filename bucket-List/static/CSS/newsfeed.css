@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700);
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+@import url('//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css');
+
+html {
+  background: url(http://bit.ly/2aA0Azb)no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 12%;
+    background-color: #900C3F;
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+    border: solid;
+}
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a {
+    text-align: center;
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-bottom: solid
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+#webBanner {
+  text-align: center;
+}
+#banner{
+  border: solid;
+  border-color: #42274B;
+}
