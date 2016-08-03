@@ -10,6 +10,12 @@
 
 }
 
+#sidebar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 #bucketList{
 	text-align: center;
 	background: url("http://bit.ly/1CWxJe6")
