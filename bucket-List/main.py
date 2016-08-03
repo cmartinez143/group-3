@@ -4,6 +4,7 @@ import urllib2
 from google.appengine.ext import ndb 
 from google.appengine.api import users
 from model import UserData
+from model import Events
 import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -73,10 +74,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             self.redirect("/login")
 
-class Events (ndb.Model):
-    event = ndb.StringProperty(required=True)
-    location = ndb.StringProperty(indexed=False)
-    User=ndb.KeyProperty(UserData)
+
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
