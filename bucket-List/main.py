@@ -60,6 +60,7 @@ class RegistrationHandler(webapp2.RequestHandler):
             u.put()
 
 class MainHandler(webapp2.RequestHandler):
+
     def get(self):
         user = users.get_current_user()
         if user:
@@ -72,8 +73,11 @@ class MainHandler(webapp2.RequestHandler):
                 # no user data; redirect to regitration
                 self.redirect("/register")
         else:
-            self.redirect("/login")
-
+            self.redirect("/home")
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template=env.get_template("index.html")
+        self.response.write(home_template.render())
 
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
@@ -82,17 +86,20 @@ class BucketListFormHandler(webapp2.RequestHandler):
         
 class BucketListHandler(webapp2.RequestHandler):
     def post(self):
+        user = users.get_current_user()
+        u_key = user.key.get()
         form_results_template = env.get_template('form_results.html')
+        e = Events(event = self.request.get, user =u_key) 
+        e.put()
         variables = {
-            'bucket_list_item': self.request.get('bucketListItem'),
-            'bucket_list_location': self.request.get('bucketListLocation')
+            'user': u_key.name,
             }
+        event_list_q = Events.query().filter(Events.user == u_key )
+        event_list = event_list_q.fetch()
 
-        e = Events(event = variables['bucket_list_item']) 
 
         bucketlistproto_template= env.get_template('form_results.html')
         self.response.out.write(form_results_template.render(variables))
-        e.put()
 
 class FriendsListHandler(webapp2.RequestHandler):
     def get(self):
@@ -116,10 +123,11 @@ app = webapp2.WSGIApplication([
     ('/register', RegistrationHandler),
     ('/bucketlistform', BucketListFormHandler),
     ('/bucketlist', BucketListHandler),
+    ('/login', LoginHandler),
+    ('/home',HomeHandler),
     ('/friends', FriendsListHandler),
     ('/messages', MessageListHandler),
-    ('/newsfeed',NewsfeedListHandler),
-    ('/login', LoginHandler)
+    ('/newsfeed',NewsfeedListHandler)
 ], debug=True)
 
 

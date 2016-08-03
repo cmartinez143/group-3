@@ -21,6 +21,7 @@
 			<img id= banner src='//img.haozhaopian.net/share/1470169575269NEI.jpg' />
 		</h1>
 	<div id = 'bucketList'>
+<<<<<<< HEAD
 		<h2 id = user_title> {{ user }}'s Bucket List </h2>
 			<ul>
 				<input type = "checkbox" id = "item"> {{bucket_list_item}}  
@@ -29,6 +30,19 @@
 			</ul>
 				<br>
 			<button onclick="window.location = '/bucketlistform';" id = add type=button> Add </button>
+=======
+	<h2 id = user_title> {{ user }}'s Bucket List </h2>
+	<ul>
+		{% for event_obj in events %}
+			<input type = "checkbox" id = "item"> {% event_obj.event %}  
+		{% endfor %}
+			<!-- <br>
+		}
+		<input type = "checkbox" id = "item"> {{bucket_list_location}}   -->    
+	</ul>
+		<br>
+	<button onclick="window.location = '/bucketlistform';" id = add type=button> Add </button>
+>>>>>>> origin/master
 	</div>
 
 	</body>
