@@ -1,14 +1,35 @@
 import jinja2
 import urllib
 import urllib2
-from google.appengine.ext import ndb
+from google.appengine.ext import ndb 
+from google.appengine.api import users
+from model import UserData
 import webapp2
 
 env= jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 #from form_results import Form_results
-class UserData ( ndb.Model ):
-    name= ndb.StringProperty(required=True)
-    date_of_birth = ndb.DateProperty(required=False)
+def get_user_data(email):
+    p =UserData.query().filter(UserData.email==email)
+    user=p.get()
+    if user:
+        return user
+    else:
+        return None
+
+class LoginPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            nickname = user.nickname()
+            logout_url = users.create_logout_url('/')
+            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
+                nickname, logout_url)
+        else:
+            login_url = users.create_login_url('/')
+            greeting = '<a href="{}">Sign in</a>'.format(login_url)
+
+        self.response.write(
+            '<html><body>{}</body></html>'.format(greeting))
 class MainHandler(webapp2.RequestHandler):
     
     def get(self):
@@ -21,12 +42,13 @@ class MainHandler(webapp2.RequestHandler):
         # they contain the input values from the main.html form with names answer1 and answer2
         template_variables = {
             'noun1':self.request.get("noun1"),
-            'password':self.request.get("password"),
             'email':self.request.get("email"),
+            #"birthday":self.request.get("birthday")
            
             }
         
-        u = UserData(name =template_variables['noun1'])
+        u = UserData(name =template_variables['noun1'], email = template_variables['email'])
+        #birthday = template_variables['birthday']
         
         exclusive = UserData.query().filter(UserData.name==template_variables['noun1'])
         only_one=exclusive.fetch()
@@ -35,16 +57,29 @@ class MainHandler(webapp2.RequestHandler):
         else:
             self.response.out.write(results_template.render(template_variables))
             u.put()
+class LoginPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            nickname = user.nickname()
+            logout_url = users.create_logout_url('/')
+            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
+                nickname, logout_url)
+        else:
+            login_url = users.create_login_url('/')
+            greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
+        self.response.write(
+            '<html><body>{}</body></html>'.format(greeting))
 class Events (ndb.Model):
     event = ndb.StringProperty(required=True)
     location = ndb.StringProperty(indexed=False)
-
+    User=ndb.KeyProperty(UserData)
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
         self.response.write(bucketlistproto_template.render())
-
+        
 class BucketListHandler(webapp2.RequestHandler):
     def post(self):
         form_results_template = env.get_template('form_results.html')
@@ -62,7 +97,8 @@ class BucketListHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/bucketlistform', BucketListFormHandler),
-    ('/bucketlist', BucketListHandler)
+    ('/bucketlist', BucketListHandler),
+    ('/login', LoginPage)
 ], debug=True)
 
 

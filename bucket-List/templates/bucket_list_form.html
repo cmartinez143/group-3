@@ -3,11 +3,15 @@
 <head>
 	<title>Bucket List</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"> </script> 
+	<link rel="stylesheet" type="text/css" href="/static/CSS/bucket_list_form.css">
 </head>
 <body background="http://bit.ly/1CWxJe6 ">
 	<!-- Creates a form for user to input an item on their bucket list. -->
 	<form method='post' action="/bucketlist"> 
 		Enter item on your bucket list: <input type = "text" name = "bucketListItem" >
+		<br>
+		Enter preferred lcoation: <input type="text" name="bucketListLocation">
+		<br>
 		<input type="submit" name="add">
 	</form>
 
