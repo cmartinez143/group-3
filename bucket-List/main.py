@@ -62,6 +62,7 @@ class RegistrationHandler(webapp2.RequestHandler):
             u.put()
 
 class MainHandler(webapp2.RequestHandler):
+
     def get(self):
         user = users.get_current_user()
         if user:
@@ -74,8 +75,11 @@ class MainHandler(webapp2.RequestHandler):
                 # no user data; redirect to regitration
                 self.redirect("/register")
         else:
-            self.redirect("/login")
-
+            self.redirect("/home")
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        home_template=env.get_template("index.html")
+        self.response.write(home_template.render())
 
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
@@ -130,10 +134,11 @@ app = webapp2.WSGIApplication([
     ('/register', RegistrationHandler),
     ('/bucketlistform', BucketListFormHandler),
     ('/bucketlist', BucketListHandler),
+    ('/login', LoginHandler),
+    ('/home',HomeHandler),
     ('/friends', FriendsListHandler),
     ('/messages', MessageListHandler),
-    ('/newsfeed',NewsfeedListHandler),
-    ('/login', LoginHandler)
+    ('/newsfeed',NewsfeedListHandler)
 ], debug=True)
 
 

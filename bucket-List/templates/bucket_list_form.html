@@ -5,9 +5,24 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"> </script> 
 	<link rel="stylesheet" type="text/css" href="/static/CSS/bucket_list_form.css">
 </head>
+<<<<<<< HEAD
+	<body background="http://bit.ly/1CWxJe6">
+		<ul id= sidebar>
+  			<li><a href="/">Home</a></li>
+  			<li><a href="/bucketlistform">Profile</a></li>
+  			<li><a href="/newsfeed">News Feed</a></li>
+  			<li><a href="/friends">Friends</a></li>
+    		<li><a href="/messages">Messages</a></li>
+    		<li><a href="/explore">Explore</a></li>
+			<li><a href="/login">Sign Out</a></li>
+		</ul>
+			<h1 id = 'webBanner'>
+				<img id= banner src='//img.haozhaopian.net/share/1470169575269NEI.jpg' />
+			</h1>
+=======
 <body background="http://bit.ly/1CWxJe6">
 	<ul id= sidebar>
-  		<li><a href="/">Home</a></li>
+  		<li><a href="/home">Home</a></li>
   		<li><a href="/bucketlistform">Profile</a></li>
   		<li><a href="/friends">Friends</a></li>
     	<li><a href="/messages">Messages</a></li>
@@ -15,15 +30,14 @@
 		<li><a href="/login">Sign Out</a></li>
 
 	</ul>
+>>>>>>> origin/master
 	<!-- Creates a form for user to input an item on their bucket list. -->
-	<form id= textbox method='post' action="/bucketlist"> 
-		Enter item on your bucket list: <input type = "text" name = "bucketListItem" >
-		<br>
-		Enter preferred lcoation: <input type="text" name="bucketListLocation">
-		<br>
-		<input type="submit" name="add">
-		
-	</form>
-
-</body>
+		<form id= textbox method='post' action="/bucketlist"> 
+			Enter item on your bucket list: <input type = "text" name = "bucketListItem" >
+				<br>
+			Enter preferred location: <input type="text" name="bucketListLocation">
+				<br>
+			<input type="submit" name="add">
+		</form>
+	</body>
 </html>
