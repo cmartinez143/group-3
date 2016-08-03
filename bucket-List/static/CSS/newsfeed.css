@@ -15,6 +15,9 @@ body {
   background: transparent;
 }
 
+#skydiving {
+  text-align: center;
+}
 ul {
     list-style-type: none;
     margin: 0;
