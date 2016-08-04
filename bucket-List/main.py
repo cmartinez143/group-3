@@ -66,16 +66,20 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            self.response.out.write("You are logged in")
             user_data_exists = get_user_data(user.email())
             if user_data_exists == True:
                 # found user data; redirect to bucketform
                 self.redirect("/bucketlistform")
             else:
+<<<<<<< Updated upstream
 
                 # no user data; redirect to regitration
                 self.redirect("/register")
 
+=======
+                # no user data; redirect to regitration
+                self.redirect("/register")
+>>>>>>> Stashed changes
                 # no user data; redirect to registration
                 self.redirect("/home")
         else:
