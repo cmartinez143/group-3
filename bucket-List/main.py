@@ -72,13 +72,12 @@ class MainHandler(webapp2.RequestHandler):
                 # found user data; redirect to bucketform
                 self.redirect("/bucketlistform")
             else:
-<<<<<<< Updated upstream
+
                 # no user data; redirect to regitration
                 self.redirect("/register")
-=======
+
                 # no user data; redirect to registration
                 self.redirect("/home")
->>>>>>> Stashed changes
         else:
             self.redirect("/home")
 class HomeHandler(webapp2.RequestHandler):
