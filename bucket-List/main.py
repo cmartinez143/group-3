@@ -26,7 +26,7 @@ class LoginHandler(webapp2.RequestHandler):
         if user:
             # user is logged in
             logout_url = users.create_logout_url('/')
-            greeting = 'THE REAL SIGN OUT BUTTON (<a href="{}">sign out</a>)'.format(
+            greeting = '(<a href="{}">sign out</a>)'.format(
                 logout_url)
         else:
             login_url = users.create_login_url('/')
