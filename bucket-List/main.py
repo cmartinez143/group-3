@@ -26,7 +26,7 @@ class LoginHandler(webapp2.RequestHandler):
         if user:
             # user is logged in
             logout_url = users.create_logout_url('/')
-            greeting = 'THE REAL SIGN OUT BUTTON (<a href="{}">sign out</a>)'.format(
+            greeting = '(<a href="{}">sign out</a>)'.format(
                 logout_url)
         else:
             login_url = users.create_login_url('/')
@@ -66,13 +66,12 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            self.response.out.write("You are logged in")
             user_data_exists = get_user_data(user.email())
             if user_data_exists == True:
                 # found user data; redirect to bucketform
                 self.redirect("/bucketlistform")
             else:
-                # no user data; redirect to regitration
+# no user data; redirect to regitration
                 self.redirect("/register")
         else:
             self.redirect("/home")
@@ -81,11 +80,13 @@ class HomeHandler(webapp2.RequestHandler):
         home_template=env.get_template("index.html")
         self.response.write(home_template.render())
 
+            #Sends users to add aonother item to bucketlsit
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
         self.response.write(bucketlistproto_template.render())
         
+            #Sends users to profile page to see bucketlist and other profile information 
 class BucketListHandler(webapp2.RequestHandler):
     def get(self):
         bucket_temp = env.get_template("form_results.html")
