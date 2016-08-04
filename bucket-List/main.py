@@ -120,17 +120,16 @@ class BucketListHandler(webapp2.RequestHandler):
         logging.info(u_key)
         e = Events(event = self.request.get('bucketListItem'), user =u_key) 
         e.put()
-        event_list_q = Events.query().filter(Events.user == u_key )
-        event_list = event_list_q.fetch()
-        logging.info(event_list)
-        variables = {
-            'user': curr_u.name,
-            'events': event_list
-            }
-
-
-        bucketlistproto_template= env.get_template('form_results.html')
-        self.response.out.write(form_results_template.render(variables))
+        self.get()
+        # event_list_q = Events.query().filter(Events.user == u_key )
+        # event_list = event_list_q.fetch()
+        # logging.info(event_list)
+        # variables = {
+        #     'user': curr_u.name,
+        #     'events': event_list
+        #     }
+        # bucketlistproto_template= env.get_template('form_results.html')
+        # self.response.out.write(form_results_template.render(variables))
 
 class FriendsListHandler(webapp2.RequestHandler):
     def get(self):

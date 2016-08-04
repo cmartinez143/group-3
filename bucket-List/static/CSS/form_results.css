@@ -1,19 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700);
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
-@import url('//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css');
 
-html {
-  background: url(http://bit.ly/2aA0Azb)no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-body {
-  background: transparent;
-}
 
 #sidebar {
     list-style-type: none;
@@ -53,12 +38,14 @@ li:last-child {
 
 #webBanner{
 	text-align: center;
+	margin-left: 150px
 
 }
 
 #user_title {
 	text-align: center;
 	background: transparent;
+	margin-left: 50px
 
 }
 
@@ -70,5 +57,7 @@ li:last-child {
 
 #bucketList{
 	text-align: center;
-	background: transparent;
+	background: url(http://bit.ly/2aTzcAl);
+	vertical-align: baseline;
+	margin-left: 150px
 }
