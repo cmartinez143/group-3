@@ -72,8 +72,13 @@ class MainHandler(webapp2.RequestHandler):
                 # found user data; redirect to bucketform
                 self.redirect("/bucketlistform")
             else:
+<<<<<<< Updated upstream
                 # no user data; redirect to regitration
                 self.redirect("/register")
+=======
+                # no user data; redirect to registration
+                self.redirect("/home")
+>>>>>>> Stashed changes
         else:
             self.redirect("/home")
 class HomeHandler(webapp2.RequestHandler):
@@ -81,11 +86,13 @@ class HomeHandler(webapp2.RequestHandler):
         home_template=env.get_template("index.html")
         self.response.write(home_template.render())
 
+            #Sends users to add aonother item to bucketlsit
 class BucketListFormHandler(webapp2.RequestHandler):
     def get(self):
         bucketlistproto_template = env.get_template('bucket_list_form.html')
         self.response.write(bucketlistproto_template.render())
         
+            #Sends users to profile page to see bucketlist and other profile information 
 class BucketListHandler(webapp2.RequestHandler):
     def get(self):
         bucket_temp = env.get_template("form_results.html")

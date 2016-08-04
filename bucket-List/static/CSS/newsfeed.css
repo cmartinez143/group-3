@@ -15,9 +15,16 @@ body {
   background: transparent;
 }
 
-#skydiving {
+div {
   text-align: center;
+  background: white;
+  background:  300px;
+  border: 400px;
+  border-color: #900C3F;
+  border-style: solid blue;
 }
+
+  /*Side Nav bar*/
 ul {
     list-style-type: none;
     margin: 0;
@@ -53,6 +60,8 @@ li a:hover {
 li:last-child {
     border-bottom: none;
 }
+
+  /*side nav bar ^*/
 
 #webBanner {
   text-align: center;

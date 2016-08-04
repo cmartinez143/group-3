@@ -15,6 +15,7 @@ body {
   background: transparent;
 }
 
+   /* side navigation bar*/
 ul {
     list-style-type: none;
     margin: 0;
@@ -50,7 +51,7 @@ li a:hover {
 li:last-child {
     border-bottom: none;
 }
-
+    /*side navigation bar ^*/
 #webBanner { 
     text-align: center;
  }
