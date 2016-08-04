@@ -58,6 +58,12 @@ li:last-child {
 #bucketList{
 	text-align: center;
 	background: url(http://bit.ly/2aTzcAl);
-	vertical-align: baseline;
-	margin-left: 150px
+	margin-left: 250px;
+	margin-right: 100px;
+}
+
+
+#item{
+	position: absolute;
+	text-align: center;
 }
