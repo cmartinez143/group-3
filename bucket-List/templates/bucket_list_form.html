@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<title>Bucket List</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"> </script> 
 	<link rel="stylesheet" type="text/css" href="/static/CSS/bucket_list_form.css">
 </head>
-
 	<body background="http://bit.ly/1CWxJe6">
-		<ul id= sidebar>
+	<ul id= sidebar>
   			<li><a href="/newsfeed">Home</a></li>
   			<li><a href="/bucketlist">BucketList</a></li>
   			<li><a href="/friends">Friends</a></li>
@@ -15,9 +15,46 @@
     		<li><a href="/explore">Explore</a></li>
 			<li><a href="/_ah/login?continue=http%3A//localhost%3A18080/&amp;action=logout">Sign Out</a></li>
 		</ul>
-			<h1 id = 'webBanner'>
+	<h1 id = 'webBanner'>
 				<img id= banner src='//img.haozhaopian.net/share/1470169575269NEI.jpg' />
 			</h1>
+
+	<div id="container">
+
+<div id='cover_container' style="background-color: blue"> 
+<div id='info_box'>
+<div id="profile_img"><img src='/static/images/android.jpeg'/></div>
+
+<div id="info-box">
+<div id="info-name"><b></b></div>
+<div id="info-content">
+<div style="float:right">
+<div><a href='change_cover.php'><img src=''/></a></div>
+</div>
+
+<!-- <div id="info-photos">
+<div>Photos</div>
+<div><b>17</b></div>
+</div>
+
+<div id="info-friends">
+<div>Friends</div>
+<div><b>270</b></div>
+</div> -->
+
+</div>
+</div>
+
+<!-- <div style='clear:both'></div> -->
+
+</div>
+</div>
+
+<div id="container-content">
+<img src='http://britainexplorer.com/wp-content/uploads/2015/09/scafell-range.jpg'>
+</div>
+
+</div>
 
 	<!-- Creates a form for user to input an item on their bucket list. -->
 		<form id= textbox method='post' action="/bucketlist"> 
