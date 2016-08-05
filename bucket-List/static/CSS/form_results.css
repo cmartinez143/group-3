@@ -1,11 +1,12 @@
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 #sidebar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 12%;
-    background-color: #900C3F;
+    background-color: #ccd7ec;
     height: 100%; /* Full height */
     position: fixed; /* Make it stick, even on scroll */
     overflow: auto; /* Enable scrolling if the sidenav has too much content */
@@ -38,14 +39,14 @@ li:last-child {
 
 #webBanner{
 	text-align: center;
-	margin-left: 150px
+	margin-left: 150px;
 
 }
 
 #user_title {
 	text-align: center;
 	background: transparent;
-	margin-left: 50px
+	margin-left: 10px
 
 }
 
@@ -56,14 +57,48 @@ li:last-child {
 }
 
 #bucketList{
-	text-align: center;
 	background: url(http://bit.ly/2aTzcAl);
-	margin-left: 250px;
-	margin-right: 100px;
+	margin-left: 280px;
+	margin-right: 130px;
 }
 
+#add{
+    margin-bottom: 15px;
+    margin-left: 390px;
+}
+
+
+#check_item{
+    text-align: center;
+}
 
 #item{
-	position: absolute;
-	text-align: center;
+    position: absolute;
+    margin-left: 320px
 }
+
+#profile_img{
+overflow: hidden;
+border:solid 5px white;
+width: 86px;
+height: 86px;
+text-align: center;
+margin-left: 643px;
+position: relative;
+
+}
+
+#name{
+    text-align: center;
+    font-weight: bold;
+    margin-left: 168px;
+    margin-top: 20px;
+    font-size: x-large;
+}
+
+
+
+
+
+
+

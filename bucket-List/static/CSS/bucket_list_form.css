@@ -3,17 +3,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
 @import url('//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css');
 
-html {
-  background: url(http://bit.ly/2aA0Azb)no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 
-body {
-  background: transparent;
-}
 
    /* side navigation bar*/
 ul {
@@ -21,7 +11,7 @@ ul {
     margin: 0;
     padding: 0;
     width: 12%;
-    background-color: #900C3F;
+    background-color: #ccd7ec;
     height: 100%; /* Full height */
     position: fixed; /* Make it stick, even on scroll */
     overflow: auto; /* Enable scrolling if the sidenav has too much content */
@@ -54,94 +44,10 @@ li:last-child {
     /*side navigation bar ^*/
 #webBanner { 
     text-align: center;
+    margin-left: 150px;
  }
 
-#banner { 
-    border: solid;
-    border-color: #42274B;
- }
 #textbox {
     text-align: center;
-}
-#container{
-margin:0 auto;
-width:987px;
-text-align: center;
-}
-
-#container-content{
-border:solid 1px #cccccc;
-width:987px;
-color:#cccccc;
-overflow: hidden;
-height: 200px;
-}
-
-#info_box{
-padding:60px 50px 0px 10px;
-border:solid 1px #dedede;
-width:987px;
-background-color:grey;
-}
-
-#profile_img{
-background-color: #FFFFFF;
-border: 1px solid #DEDEDE;
-margin-left: 10px;
-margin-top: -100px;
-position: absolute;
-width: 86px;
-height: 86px;
-float:left;
-overflow: hidden;
-text-align: center;
-}
-
-.avatar_img{
-padding:3px;
-}
-
-#cover_container{
-overflow: hidden;
-width: 800px;
-
-}
-
-#info-box{
-margin-left:115px;
-margin-top: 50px;
-position: absolute;
-text-align: center;
-}
-
-#info-name{
-float:left;
-overflow:hidden;
-word-wrap: break-word;
-width:150px;
-}
-
-#info-content{
-margin-left:170px;
-width:290px;
-}
-
-#info-photos{
-text-align:center;
-font-size:11px;
-padding:5px;
-float:left;
-width:80px;
-border:solid 1px #eeeeee;
--moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;
-}
-
-#info-friends{
-text-align:center;
-font-size:11px;
-padding:5px;
-margin-left:100px;
-border:solid 1px #eeeeee;
-width:80px;
--moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;
+    margin-left: 150px;
 }

@@ -15,12 +15,15 @@ body {
   background: transparent;
 }
 
+
+
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 12%;
-    background-color: #900C3F;
+    background-color: #ccd7ec;
     height: 100%; /* Full height */
     position: fixed; /* Make it stick, even on scroll */
     overflow: auto; /* Enable scrolling if the sidenav has too much content */
@@ -53,8 +56,5 @@ li:last-child {
 
 #webBanner {
   text-align: center;
-}
-#banner{
-  border: solid;
-  border-color: #42274B;
+  margin-left: 150px;
 }
