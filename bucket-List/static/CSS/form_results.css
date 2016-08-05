@@ -46,7 +46,7 @@ li:last-child {
 #user_title {
 	text-align: center;
 	background: transparent;
-	margin-left: 10px
+	margin-left: 16px
 
 }
 
@@ -58,13 +58,13 @@ li:last-child {
 
 #bucketList{
 	background: url(http://bit.ly/2aTzcAl);
-	margin-left: 280px;
-	margin-right: 130px;
+	margin-left: 400px;
+	margin-right: 250px;
 }
 
 #add{
     margin-bottom: 15px;
-    margin-left: 390px;
+    margin-left: 380px;
 }
 
 
@@ -74,16 +74,16 @@ li:last-child {
 
 #item{
     position: absolute;
-    margin-left: 320px
+    margin-left: 313px
 }
 
 #profile_img{
 overflow: hidden;
 border:solid 5px white;
-width: 86px;
-height: 86px;
+width: 120px;
+height: 120px;
 text-align: center;
-margin-left: 643px;
+margin-left: 725px;
 position: relative;
 
 }
@@ -91,7 +91,7 @@ position: relative;
 #name{
     text-align: center;
     font-weight: bold;
-    margin-left: 168px;
+    margin-left: 165px;
     margin-top: 20px;
     font-size: x-large;
 }
