@@ -54,7 +54,20 @@ li:last-child {
     border-bottom: none;
 }
 
-#webBanner {
+#banner {
   text-align: center;
   margin-left: 150px;
+  height:auto;
+  width:auto;
+
 }
+
+img{
+  margin-left:15%;
+  margin-right:5%;
+  display:inline;
+  width:400px;
+  height:auto;
+}
+
+
